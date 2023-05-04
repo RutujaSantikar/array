@@ -138,102 +138,44 @@ export class AppComponent implements OnInit {
     },
   ];
 
+  // displayMagnification() {
+  //   for (let i = 0; i < this.data1.length; i++) {
+  //     for (let j = 0; j < this.data1[i].calibrationReport.length; j++) {
+  //       for (let k = 0;k < this.data1[i].calibrationReport[j].instrument.length;k++) {
+  //         for (let l = 0;l <this.data1[i].calibrationReport[j].instrument[k].instrumentReport.length;l++) {
+  //           if (this.data1[i].calibrationReport[j].instrument[k].instrumentReport[l] &&this.data1[i].calibrationReport[j].instrument[k].instrumentReport[l].magnification) {
+  //             for (  let m = 0; m <this.data1[i].calibrationReport[j].instrument[k].instrumentReport[l].magnification.length; m++) {
+  //               for (let n = 0; n < this.data2.length; n++) {
+  //                 for (let o = 0; o < this.data2[n].magnification.length; o++) {
+  //                   if (this.data1[i].calibrationReport[j].instrument[k].instrumentReport[l].magnification[m].id == this.data2[n].magnification[o].id) {
+  //                     console.log(this.data2[n].magnification[o]);
+  //                   }
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
   displayMagnification() {
-    // for (let i = 0; i < this.data1.length; i++) {
-    //   for (let j = 0; j < this.data1[i].calibrationReport.length; j++) {
-    //     for (
-    //       let k = 0;
-    //       k < this.data1[i].calibrationReport[j].instrument.length;
-    //       k++
-    //     ) {
-    //       for (
-    //         let l = 0;
-    //         l <
-    //         this.data1[i].calibrationReport[j].instrument[k].instrumentReport
-    //           .length;
-    //         l++
-    //       ) {
-    //         if (
-    //           this.data1[i].calibrationReport[j].instrument[k].instrumentReport[
-    //             l
-    //           ] &&
-    //           this.data1[i].calibrationReport[j].instrument[k].instrumentReport[
-    //             l
-    //           ].magnification
-    //         ) {
-    //           for (
-    //             let m = 0;
-    //             m <
-    //             this.data1[i].calibrationReport[j].instrument[k]
-    //               .instrumentReport[l].magnification.length;
-    //             m++
-    //           ) {
-    //             for (let n = 0; n < this.data2.length; n++) {
-    //               for (let o = 0; o < this.data2[n].magnification.length; o++) {
-    //                 if (
-    //                   this.data1[i].calibrationReport[j].instrument[k]
-    //                     .instrumentReport[l].magnification[m].id ==
-    //                   this.data2[n].magnification[o].id
-    //                 ) {
-    //                   console.log(this.data2[n].magnification[o]);
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    if (this.data1 && Array.isArray(this.data1)) {
-      for (let i = 0; i < this.data1.length; i++) {
-        if (
-          this.data1[i].calibrationReport &&
-          Array.isArray(this.data1[i].calibrationReport)
-        ) {
-          for (let j = 0; j < this.data1[i].calibrationReport.length; j++) {
-            if (
-              this.data1[i].calibrationReport[j].instrument &&
-              Array.isArray(this.data1[i].calibrationReport[j].instrument)
-            ) {
-              for (
-                let k = 0;
-                k <
-                this.data1[i].calibrationReport[j].instrument[k]
-                  .instrumentReport.length;
-                k++
-              ) {
-                const instrumentReport =
-                  this.data1[i].calibrationReport[j].instrument[k]
-                    .instrumentReport[k];
-                if (
-                  instrumentReport &&
-                  instrumentReport.magnification &&
-                  Array.isArray(instrumentReport.magnification)
-                ) {
-                  const magnificationLength =
-                    instrumentReport.magnification.length;
-                  for (let l = 0; l < magnificationLength; l++) {
-                    for (let m = 0; m < this.data2.length; m++) {
-                      if (
-                        this.data2[m].magnification &&
-                        Array.isArray(this.data2[m].magnification)
-                      ) {
-                        const data2MagnificationLength =
-                          this.data2[m].magnification.length;
-                        for (let n = 0; n < data2MagnificationLength; n++) {
-                          if (
-                            instrumentReport.magnification[l].id ==
-                            this.data2[m].magnification[n].id
-                          ) {
-                            console.log(this.data2[m].magnification[n]);
-                          }
-                        }
-                      }
-                    }
+    for (let i = 0; i < this.data1.length; i++) {
+      const calibrationReport = this.data1[i].calibrationReport;
+      for (let j = 0; j < calibrationReport.length; j++) {
+        const instrument = calibrationReport[j].instrument;
+        for (let k = 0; k < instrument.length; k++) {
+          const instrumentReport = instrument[k].instrumentReport;
+          for (let k = 0; k < instrumentReport.length; k++) {
+            const magnification = instrumentReport[k].magnification;
+            if (magnification) {
+              for (let l = 0; l < magnification.length; l++) {
+                const magnificationId = magnification[l].id;
+                for (let m = 0; m < this.data2[i].magnification.length; m++) {
+                  if (this.data2[0].magnification[m].id === magnificationId) {
+                    console.log(this.data2[0].magnification[l]);
                   }
-                } else {
-                  // Handle the case where magnification is undefined or null
                 }
               }
             }
