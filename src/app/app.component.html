@@ -1,21 +1,44 @@
-<!-- let magnification: any;
-for (let i = 0; i < this.data1.length; i++) {
-  const calibrationReport = this.data1[i].calibrationReport;
-  for (let j = 0; j < calibrationReport.length; j++) {
-    const instrument = this.data1[i].calibrationReport[j].instrument;
-    for (let k = 0; k < instrument.length; k++) {
-      const instrumentReport = instrument[k].instrumentReport;
-      for (let k = 0; k < instrumentReport.length; k++) {
-        magnification = instrumentReport[k].magnification;
-        for (let l = 0; l < magnification.length; l++) {
-          const magnificationId = magnification[l].id;
-          for (let m = 0; m < this.data2[i].magnification.length; m++) {
-            if (this.data2[0].magnification[m].id === magnificationId) {
-              console.log(this.data2[0].magnification[l]);
-            }
-          }
-        }
-      }
-    }
-  }
-} -->
+<html>
+  <body>
+    <section class="users w-4/5 my-4 mx-auto" *ngFor="let user of users">
+      <div class="user-card shadow-lg p-4 font-sans font-medium">
+        <div>
+          <img
+            class="rounded-full w-32 h-32"
+            src="{{ user.image }}"
+            alt="user picture"
+          />
+        </div>
+        <div class="text-2xl text-fuchsia-600 p-1">
+          <span><i class="fa-solid fa-user text-gray-400"></i></span>
+          {{ user.firstName }}
+          {{ user.lastName }}
+        </div>
+
+        <div class="text-lg font-semibold text-fuchsia-800 p-1">
+          <span><i class="fa-solid fa-briefcase text-gray-400"></i></span>
+          {{ user.company.title }} @{{ user.company.name }}
+        </div>
+
+        <p class="text-cyan-800 p-1">
+          <span><i class="fa-solid fa-cake-candles text-gray-400"></i></span
+          >{{ user.birthDate }}
+        </p>
+        <p class="text-gray-600 p-1">
+          <span><i class="fa-solid fa-envelope text-gray-400"></i></span
+          >{{ user.email }}
+        </p>
+        <p class="text-gray-600 p-1">
+          <span><i class="fa-solid fa-phone text-gray-400"></i></span
+          >{{ user.phone }}
+        </p>
+        <p>
+          <span><i class="fa-solid fa-location-dot text-gray-400"></i></span>
+          {{ user.company.address.address }},{{ user.company.address.city }},{{
+            user.company.address.postalCode
+          }},{{ user.company.address.state }}
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
